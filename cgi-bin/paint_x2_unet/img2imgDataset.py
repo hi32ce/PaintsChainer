@@ -164,6 +164,9 @@ class Image2ImageDataset(chainer.dataset.DatasetMixin):
             image1 = cv2.imread(path1, cv2.IMREAD_GRAYSCALE)
             image2 = cv2.imread(path2, cv2.IMREAD_COLOR)
 
+        image1 = cv2.resize(image1, (128, 128), interpolation=cv2.INTER_AREA)
+        image2 = cv2.resize(image2, (128, 128), interpolation=cv2.INTER_AREA)
+
         image2 = cvt2YUV( image2 )
         name1 = os.path.basename(self._paths[i])
 
