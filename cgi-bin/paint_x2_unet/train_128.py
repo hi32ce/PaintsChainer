@@ -66,7 +66,7 @@ def main():
     serializers.load_npz("models/liner_f", l)
 
     dataset = Image2ImageDataset(
-        "dat/images_color_train.dat", root + "line/", root + "color/", train=True)
+        os.path.join(root, "images_color_train.dat"), os.path.join(root, "line/"), os.path.join(root, "color/"), train=True)
     # dataset.set_img_dict(img_dict)
     train_iter = chainer.iterators.SerialIterator(dataset, args.batchsize)
 
