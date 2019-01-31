@@ -60,7 +60,7 @@ def main():
     cnn = unet.UNET()
     #serializers.load_npz("result/model_iter_10000", cnn)
     cnn_128 = unet.UNET()
-    serializers.load_npz("models/model_cnn_128_dfl2_9", cnn_128)
+    serializers.load_npz(os.path.join(os.path.split(__file__)[0], "models/model_cnn_128_dfl2_9"), cnn_128)
 
     dataset = Image2ImageDatasetX2(
         os.path.join(root, "images_color_train.dat"), root + "line/", root + "color/", train=True)
@@ -139,9 +139,11 @@ class ganUpdater(chainer.training.StandardUpdater):
 
         x_in = xp.zeros((batchsize, 4, w_in, w_in)).astype("f")
         x_in_2 = xp.zeros((batchsize, 4, w_in_2, w_in_2)).astype("f")
+        print(x_in_2.shape)
         t_out = xp.zeros((batchsize, 3, w_out, w_out)).astype("f")
 
         for i in range(batchsize):
+            print(batch[i][3].shape)
             x_in[i, :] = xp.asarray(batch[i][0])
             x_in_2[i, 0, :] = xp.asarray(batch[i][2])
             for ch in range(3):

@@ -256,6 +256,8 @@ class Image2ImageDatasetX2(Image2ImageDataset):
         image1 = cv2.imread(path1, cv2.IMREAD_GRAYSCALE)
         image2 = cv2.imread(path2, cv2.IMREAD_COLOR)
         image2 = cvt2YUV(image2)
+        image1 = cv2.resize(image1, (512, 512), interpolation=cv2.INTER_AREA)
+        image2 = cv2.resize(image2, (512, 512), interpolation=cv2.INTER_AREA)
         image2 = np.asarray(image2, self._dtype)
         name1 = os.path.basename(self._paths[i])
         vec = self.get_vec(name1)
