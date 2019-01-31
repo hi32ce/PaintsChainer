@@ -15,7 +15,7 @@ import cv2
 
 def cvt2YUV(img):
     (major, minor, _) = cv2.__version__.split(".")
-    if major == '3':
+    if int(major) >= 3:
         img = cv2.cvtColor( img, cv2.COLOR_RGB2YUV )
     else:
         img = cv2.cvtColor( img, cv2.COLOR_BGR2YUV )
