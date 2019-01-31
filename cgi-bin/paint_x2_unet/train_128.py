@@ -121,6 +121,8 @@ def main():
         chainer.serializers.load_npz(args.resume, trainer)
 
     # Save the trained model
+    out_dir = "./model/train_128/"
+    os.makedirs(out_dir, exist_ok=True)
     chainer.serializers.save_npz(os.path.join(out_dir, 'model_final'), cnn)
     chainer.serializers.save_npz(os.path.join(out_dir, 'optimizer_final'), opt)
 
